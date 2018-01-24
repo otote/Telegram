@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="AppName">Telegram</string>
+    <string name="AppName">TelegramCN</string>
     <string name="AppNameBeta">Telegram Beta</string>
     <string name="LanguageName">English</string>
     <string name="English">English</string>
@@ -1779,4 +1779,8 @@
     <string name="formatterDay24H">HH:mm</string>
     <string name="formatterDay12H">h:mm a</string>
     <string name="formatDateAtTime">%1$s at %2$s</string>
+    <string name="UseTranslateSettings">Use Translate settings</string>
+    <string name="Translate">Translate</string>
+    <string name="BaiduFanYi_appid">BaiduFanYi_appid</string>
+    <string name="BaiduFanYi_secretKey">BaiduFanYi_secretKey</string>
 </resources>

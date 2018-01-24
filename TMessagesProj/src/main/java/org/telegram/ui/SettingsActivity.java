@@ -82,6 +82,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.ThemeDescription;
+import org.telegram.ui.Adapters.Translate;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.TextInfoCell;
 import org.telegram.ui.Cells.EmptyCell;
@@ -138,6 +139,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
     private int backgroundRow;
     private int themeRow;
     private int languageRow;
+    private int translateRow;
     private int privacyRow;
     private int dataRow;
     private int saveToGalleryRow;
@@ -290,6 +292,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
         backgroundRow = rowCount++;
         themeRow = rowCount++;
         languageRow = rowCount++;
+        translateRow = rowCount++;
         enableAnimationsRow = rowCount++;
         messagesSectionRow = rowCount++;
         messagesSectionRow2 = rowCount++;
@@ -535,7 +538,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     if (view instanceof TextCheckCell) {
                         ((TextCheckCell) view).setChecked(MediaController.getInstance().canCustomTabs());
                     }
-                } else if(position == directShareRow) {
+                } else if (position == directShareRow) {
                     MediaController.getInstance().toggleDirectShare();
                     if (view instanceof TextCheckCell) {
                         ((TextCheckCell) view).setChecked(MediaController.getInstance().canDirectShare());
@@ -546,6 +549,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     presentFragment(new DataSettingsActivity());
                 } else if (position == languageRow) {
                     presentFragment(new LanguageSelectActivity());
+                } else if (position == translateRow) {
+                    presentFragment(new LanguageTranslateActivity());
                 } else if (position == themeRow) {
                     presentFragment(new ThemeActivity());
                 } else if (position == switchBackendButtonRow) {
@@ -1100,7 +1105,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             nameTextView.setTranslationX(-21 * AndroidUtilities.density * diff);
             nameTextView.setTranslationY((float) Math.floor(avatarY) - (float) Math.ceil(AndroidUtilities.density) + (float) Math.floor(7 * AndroidUtilities.density * diff));
             onlineTextView.setTranslationX(-21 * AndroidUtilities.density * diff);
-            onlineTextView.setTranslationY((float) Math.floor(avatarY) + AndroidUtilities.dp(22) + (float )Math.floor(11 * AndroidUtilities.density) * diff);
+            onlineTextView.setTranslationY((float) Math.floor(avatarY) + AndroidUtilities.dp(22) + (float) Math.floor(11 * AndroidUtilities.density) * diff);
             nameTextView.setScaleX(1.0f + 0.12f * diff);
             nameTextView.setScaleY(1.0f + 0.12f * diff);
         }
@@ -1257,6 +1262,8 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
                     SharedPreferences preferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", Activity.MODE_PRIVATE);
                     if (position == enableAnimationsRow) {
                         textCell.setTextAndCheck(LocaleController.getString("EnableAnimations", R.string.EnableAnimations), preferences.getBoolean("view_animations", true), false);
+                    } else if (position == translateRow) {
+                        textCell.setTextAndCheck(LocaleController.getString("Translate", R.string.Translate), Translate.useTranslateSettings, true);
                     } else if (position == sendByEnterRow) {
                         textCell.setTextAndCheck(LocaleController.getString("SendByEnter", R.string.SendByEnter), preferences.getBoolean("send_by_enter", false), true);
                     } else if (position == saveToGalleryRow) {
@@ -1329,7 +1336,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             int position = holder.getAdapterPosition();
             return position == textSizeRow || position == enableAnimationsRow || position == notificationRow || position == backgroundRow || position == numberRow ||
                     position == askQuestionRow || position == sendLogsRow || position == sendByEnterRow || position == autoplayGifsRow || position == privacyRow ||
-                    position == clearLogsRow || position == languageRow || position == usernameRow || position == bioRow ||
+                    position == clearLogsRow || position == languageRow || position == translateRow || position == usernameRow || position == bioRow ||
                     position == switchBackendButtonRow || position == telegramFaqRow || position == contactsSortRow || position == contactsReimportRow || position == saveToGalleryRow ||
                     position == stickersRow || position == raiseToSpeakRow || position == privacyPolicyRow || position == customTabsRow || position == directShareRow || position == versionRow ||
                     position == emojiRow || position == dataRow || position == themeRow || position == dumpCallStatsRow;
@@ -1402,7 +1409,7 @@ public class SettingsActivity extends BaseFragment implements NotificationCenter
             }
             if (position == settingsSectionRow || position == supportSectionRow || position == messagesSectionRow || position == contactsSectionRow) {
                 return 1;
-            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == dumpCallStatsRow) {
+            } else if (position == enableAnimationsRow || position == sendByEnterRow || position == translateRow || position == saveToGalleryRow || position == autoplayGifsRow || position == raiseToSpeakRow || position == customTabsRow || position == directShareRow || position == dumpCallStatsRow) {
                 return 3;
             } else if (position == notificationRow || position == themeRow || position == backgroundRow || position == askQuestionRow || position == sendLogsRow || position == privacyRow || position == clearLogsRow || position == switchBackendButtonRow || position == telegramFaqRow || position == contactsReimportRow || position == textSizeRow || position == languageRow || position == contactsSortRow || position == stickersRow || position == privacyPolicyRow || position == emojiRow || position == dataRow) {
                 return 2;

@@ -3218,8 +3218,8 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
                 sizeNotifierLayout.invalidate();
             }
 
-            private boolean allowDragging(){
-                return stickersTabOpen && !(!stickersExpanded && messageEditText.length()>0) && emojiView.areThereAnyStickers();
+            private boolean allowDragging() {
+                return stickersTabOpen && !(!stickersExpanded && messageEditText.length() > 0) && emojiView.areThereAnyStickers();
             }
         });
         emojiView.setVisibility(GONE);
