@@ -6,9 +6,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:698680981168:android:f6afd7b67eae3860",
+        "mobilesdk_app_id": "1:698680981168:android:6472ca48e5fb69af",
         "android_client_info": {
-          "package_name": "org.telegram.messenger"
+          "package_name": "org.telegram.messenger_cn"
         }
       },
       "oauth_client": [

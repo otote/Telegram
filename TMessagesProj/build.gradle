@@ -30,7 +30,7 @@ android {
 
 
     useLibrary 'org.apache.http.legacy'
-    defaultConfig.applicationId = "org.telegram.messenger"
+    defaultConfig.applicationId = "org.telegram.messenger_cn"
 
 //    sourceSets.main.jniLibs.srcDirs = ['./jni/']
 
